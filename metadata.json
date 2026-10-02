@@ -1,0 +1,6 @@
+{
+  "name": "KingMaker",
+  "description": "Persistent, human-governed Decision Intelligence Workspace for technical and architectural decisions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
