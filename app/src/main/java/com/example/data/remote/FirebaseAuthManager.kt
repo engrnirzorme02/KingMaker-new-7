@@ -34,21 +34,25 @@ class FirebaseAuthManager(private val context: Context) {
 
     init {
         try {
-            firebaseAuth = FirebaseAuth.getInstance()
-            firebaseAuth?.addAuthStateListener { auth ->
-                val currentUser: FirebaseUser? = auth.currentUser
-                if (currentUser != null) {
-                    _sessionState.value = UserSession(
-                        isAuthenticated = true,
-                        uid = currentUser.uid,
-                        email = currentUser.email ?: "engr.nirzor.me.02@gmail.com",
-                        displayName = currentUser.displayName ?: "Authorized Human Owner",
-                        isAllowlistedOwner = isOwner(currentUser.email),
-                        isCloudSynced = true
-                    )
+            if (com.google.firebase.FirebaseApp.getApps(context).isNotEmpty()) {
+                firebaseAuth = FirebaseAuth.getInstance()
+                firebaseAuth?.addAuthStateListener { auth ->
+                    val currentUser: FirebaseUser? = auth.currentUser
+                    if (currentUser != null) {
+                        _sessionState.value = UserSession(
+                            isAuthenticated = true,
+                            uid = currentUser.uid,
+                            email = currentUser.email ?: "engr.nirzor.me.02@gmail.com",
+                            displayName = currentUser.displayName ?: "Authorized Human Owner",
+                            isAllowlistedOwner = isOwner(currentUser.email),
+                            isCloudSynced = true
+                        )
+                    }
                 }
+            } else {
+                Log.i("FirebaseAuthManager", "FirebaseApp not initialized yet. Operating in local owner allowlist mode.")
             }
-        } catch (e: Exception) {
+        } catch (t: Throwable) {
             Log.i("FirebaseAuthManager", "Firebase not yet provisioned in Google Cloud console. Operating in offline owner allowlist mode.")
         }
     }

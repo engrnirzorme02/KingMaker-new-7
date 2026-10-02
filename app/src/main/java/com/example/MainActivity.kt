@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,13 +16,14 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.model.Decision
 import com.example.model.DecisionStatus
+import com.example.ui.KingMakerViewModel
+import com.example.ui.Screen
 import com.example.ui.components.KingMakerBottomNav
 import com.example.ui.components.KingMakerTopBar
 import com.example.ui.screens.AdrDetailScreen

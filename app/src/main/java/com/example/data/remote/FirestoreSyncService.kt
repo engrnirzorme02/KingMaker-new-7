@@ -14,8 +14,8 @@ class FirestoreSyncService {
     init {
         try {
             firestore = FirebaseFirestore.getInstance()
-        } catch (e: Exception) {
-            Log.i("FirestoreSyncService", "Firestore initialization deferred until project connected: ${e.message}")
+        } catch (t: Throwable) {
+            Log.i("FirestoreSyncService", "Firestore initialization deferred until project connected: ${t.message}")
         }
     }
 
